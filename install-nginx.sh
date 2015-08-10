@@ -1,10 +1,10 @@
 #!/bin/sh
 
 mv /etc/nginx /etc/nginx.backup
-rm -rf /usr/sbin/nginx && /etc/nginx
-
 service nginx stop
+pkill nginx
 apt-get remove nginx
+rm -rf /usr/sbin/nginx && /etc/nginx
 
 apt-get install build-essential libc6 libpcre3 libpcre3-dev libpcrecpp0 libssl-dev zlib1g zlib1g-dev lsb-base
 cd /tmp/
