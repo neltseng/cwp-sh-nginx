@@ -1,6 +1,7 @@
 #!/bin/sh
-
-mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf.backup
+cd /tmp/
+mkdir nginx_backup
+cp /etc/nginx/nginx.conf /tmp/nginx_backup/nginx.conf
 service nginx stop
 pkill nginx
 apt-get remove nginx
@@ -9,7 +10,6 @@ rm -rf /usr/sbin/nginx
 rm -rf /etc/nginx
 
 apt-get install build-essential libc6 libpcre3 libpcre3-dev libpcrecpp0 libssl-dev zlib1g zlib1g-dev lsb-base
-cd /tmp/
 mkdir custom_nginx
 cd custom_nginx
 mkdir build
@@ -42,6 +42,6 @@ cd nginx-1.8.0
 /usr/bin/make
 /usr/bin/make install
 rm /etc/nginx/nginx.conf
-mv /etc/nginx/nginx.conf.backup /etc/nginx/nginx.conf
+cp /tmp/nginx_backup/nginx.conf /etc/nginx/nginx.conf
 service nginx start
 sudo ln -s /tmp/custom_nginx/build/sbin/nginx /usr/sbin/nginx
