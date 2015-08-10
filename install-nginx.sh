@@ -4,6 +4,7 @@ mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf.backup
 service nginx stop
 pkill nginx
 apt-get remove nginx
+y
 rm -rf /usr/sbin/nginx
 rm -rf /etc/nginx
 
