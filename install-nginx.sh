@@ -1,6 +1,12 @@
 #!/bin/sh
 
-sudo apt-get install build-essential libc6 libpcre3 libpcre3-dev libpcrecpp0 libssl-dev zlib1g zlib1g-dev lsb-base
+mv /etc/nginx /etc/nginx.backup
+rm -rf /usr/sbin/nginx && /etc/nginx
+
+service nginx stop
+apt-get remove nginx
+
+apt-get install build-essential libc6 libpcre3 libpcre3-dev libpcrecpp0 libssl-dev zlib1g zlib1g-dev lsb-base
 cd /tmp/
 mkdir custom_nginx
 cd custom_nginx
@@ -33,5 +39,7 @@ cd nginx-1.8.0
 
 /usr/bin/make
 /usr/bin/make install
-
+rm -rf /etc/nginx
+mv /etc/nginx.backup /etc/nginx
+service nginx start
 sudo ln -s /tmp/custom_nginx/build/sbin/nginx /usr/sbin/nginx
